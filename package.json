@@ -1,0 +1,27 @@
+{
+  "name": "control-tree",
+  "version": "0.0.0",
+  "description": "Javascript library to convert your control flow into a data structure :deciduous_tree: Edit",
+  "main": "control-tree.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sravan-s/control-tree.git"
+  },
+  "keywords": [
+    "control-tree",
+    "javascript"
+  ],
+  "author": "ess_ess <sravans2011@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sravan-s/control-tree/issues"
+  },
+  "homepage": "https://github.com/sravan-s/control-tree#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
