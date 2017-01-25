@@ -21,7 +21,7 @@ function testTree(param) {
           console.log('a > b is false');
         },
         test: () => {
-          return b > a
+          return param.b > param.a
         },
         true: () => {
           console.log('b > a is true');
