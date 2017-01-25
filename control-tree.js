@@ -1,15 +1,5 @@
-// takes a tree and executes the results
-function controlTree(tree) {
-  let flag;
+function _handleNext(tree, flag) {
   let result;
-  // executes action key
-  if (tree.action && (typeof tree.action == 'function')) {
-    tree.action();
-  }
-  // executes test
-  if (tree.test && (typeof tree.test == 'function')) {
-    flag = tree.test();
-  }
   // executes true / false as per result of test
   if (flag && tree.true) {
     if (typeof tree.true == 'function') {
@@ -26,6 +16,33 @@ function controlTree(tree) {
   }
   if (result) {
     controlTree(result);
+  }
+}
+
+// takes a tree and executes the results
+function controlTree(tree) {
+  let flag;
+  // executes action key
+  if (tree.action && (typeof tree.action == 'function')) {
+    tree.action();
+  }
+  if (tree.type == 'ASYNC') {
+    let testPromise = new Promise(tree.test);
+    testPromise
+      .then(result => {
+        console.log(result);
+        _handleNext(tree, result);
+      })
+      .catch(err => {
+        console.log(err);
+        _handleNext(tree, false);
+      })
+  } else {
+    // executes test
+    if (tree.test && (typeof tree.test == 'function')) {
+      flag = tree.test();
+      _handleNext(tree, flag);
+    }
   }
 }
 

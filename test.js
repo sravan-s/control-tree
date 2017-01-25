@@ -17,11 +17,18 @@ function testTree(param) {
     },
     false: () => {
       return {
+        type: 'ASYNC',
         action: () => {
           console.log('a > b is false');
         },
-        test: () => {
-          return param.b > param.a
+        test: (cb) => {
+          setTimeout(() => {
+            if (param.b > param.a) {
+              cb(true);
+            } else {
+              cb(false);
+            }
+          }, 2000);
         },
         true: () => {
           console.log('b > a is true');
