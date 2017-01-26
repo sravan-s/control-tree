@@ -30,11 +30,9 @@ function controlTree(tree) {
     let testPromise = new Promise(tree.test);
     testPromise
       .then(result => {
-        console.log(result);
         _handleNext(tree, result);
       })
       .catch(err => {
-        console.log(err);
         _handleNext(tree, false);
       })
   } else {
