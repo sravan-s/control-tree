@@ -6,8 +6,15 @@ Based on https://hackernoon.com/you-might-not-need-if-statements-a-better-approa
 The decision tree could be a function or an object with a specific structure
 ```
 {
+  type: 'ASYNC', // Type can be ASYNC or undefined
   action: () => {}, // always get executed first
-  test: () => {}, // the condition to be evaluated
+  test: cb => {
+    asyncFn // cb is only avaiable with ASYNC functions
+      .then((err, data) => {
+        if (err) { cb(false) }
+        if (data) { cb(true) }
+      });
+  },
   true: () => {}, // what to with when test is true
   false: {
     action: () => {},
@@ -38,11 +45,18 @@ function testTree(param) {
     },
     false: () => {
       return {
+        type: 'ASYNC',
         action: () => {
           console.log('a > b is false');
         },
-        test: () => {
-          return b > a
+        test: cb => {
+          setTimeout(() => {
+            if (param.b > param.a) {
+              cb(true);
+            } else {
+              cb(false);
+            }
+          }, 2000);
         },
         true: () => {
           console.log('b > a is true');
@@ -54,4 +68,5 @@ function testTree(param) {
     }
   }
 }
+
 ```
