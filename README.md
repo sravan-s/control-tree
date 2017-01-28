@@ -2,6 +2,7 @@
 Javascript library to convert your control flow into a data structure
 
 [![Build Status](https://travis-ci.org/sravan-s/control-tree.svg?branch=master)](https://travis-ci.org/sravan-s/control-tree)
+[![codecov](https://codecov.io/gh/sravan-s/control-tree/branch/master/graph/badge.svg)](https://codecov.io/gh/sravan-s/control-tree)
 
 Based on https://hackernoon.com/you-might-not-need-if-statements-a-better-approach-to-branching-logic-59b4f877697f#.ls40q37si
 

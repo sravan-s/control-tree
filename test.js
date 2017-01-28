@@ -125,3 +125,38 @@ describe('noasync-test', () => {
     done(assert.equal(testObj.largest, 7));
   });
 });
+
+describe('async-test', () => {
+  it('should do test on an async function', done => {
+    function testTree(param) {
+      return {
+        type: 'ASYNC',
+        action: () => {
+          console.log('Tree init');
+        },
+        test: cb => {
+          setTimeout(() => {
+            cb(param.a > param.b);
+          }, 1000);
+        },
+        true: {
+          action: () => {
+            param.largest = param.a;
+          },
+          test: () => {
+            return param.c > param.a;
+          },
+          false: {
+            action: () => {
+              done(assert.equal(param.largest, 2));
+            }
+          }
+        }
+      }
+    }
+    controlTree(testTree({
+      a: 2,
+      b: 0
+    }));
+  });
+});
